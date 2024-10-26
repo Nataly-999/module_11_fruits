@@ -100,7 +100,7 @@ main {
 }
 
 .fruit__item {
-  margin: 40px;
+  margin: 10px;
   padding: 10px;
   width: fit-content;
   height: 100px;
@@ -129,7 +129,6 @@ main {
 
 .fruit__info {
   display: flex;
-  margin-right: 20px;
   justify-content: center;
   flex-direction: column;
   border-radius: 5px;

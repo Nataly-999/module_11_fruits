@@ -38,32 +38,38 @@ const display = () => {
     // TODO: формируем новый элемент <li> при помощи document.createElement,
     // и добавляем в конец списка fruitsList при помощи document.appendChild
       const newLi = document.createElement("li");
+      newLi.classList.add('fruit__item');
       if (fruits[i].color == "фиолетовый"){
-        newLi.innerHTML = "<li class=\"fruit__item fruit_violet\"> </li>";
+        newLi.classList.add('fruit_violet');
+        //newLi.innerHTML = "<li class=\"fruit__item fruit_violet\"> </li>";
       } else
       if (fruits[i].color == "зеленый"){
-        newLi.innerHTML = "<li class=\"fruit__item fruit_green\"> </li>";
+        newLi.classList.add('fruit_green');
+        //newLi.innerHTML = "<li class=\"fruit__item fruit_green\"> </li>";
       } else
       if (fruits[i].color == "розово-красный"){
-        newLi.innerHTML = "<li class=\"fruit__item fruit_carmazin\"> </li>";
+        newLi.classList.add('fruit_carmazin');
+        //newLi.innerHTML = "<li class=\"fruit__item fruit_carmazin\"> </li>";
       } else
       if (fruits[i].color == "желтый"){
-        newLi.innerHTML = "<li class=\"fruit__item fruit_yellow\"> </li>";
+        newLi.classList.add('fruit_yellow');
+        //newLi.innerHTML = "<li class=\"fruit__item fruit_yellow\"> </li>";
       } else
       if (fruits[i].color == "светло-коричневый"){
-        newLi.innerHTML = "<li class=\"fruit__item fruit_lightbrown\"> </li>";
+        newLi.classList.add('fruit_lightbrown');
+        //newLi.innerHTML = "<li class=\"fruit__item fruit_lightbrown\"> </li>";
       } 
       fruitsList.appendChild(newLi);     // добавляем в конец списка fruitsList при помощи document.appendChild
      
       const div = document.createElement("div");
+      div.classList.add('fruit__info');
+      newLi.appendChild(div);  // добавляем div в родительский элемент li при помощи document.appendChild
       div.innerHTML = `
-        <div class=\"fruit__info\">
         <div>index: ${i + 1}</div>
         <div>kind: ${fruits[i].kind}</div>
         <div>color: ${fruits[i].color}</div>
         <div>weight: ${fruits[i].weight}</div>
-        </div>`;
-      newLi.appendChild(div);      // добавляем div в родительский элемент li при помощи document.appendChild
+        `;
   }
 };
 
@@ -108,20 +114,36 @@ shuffleButton.addEventListener('click', () => {
 /*** ФИЛЬТРАЦИЯ ***/
 
 // фильтрация массива
+/*const filterFruits = () => {
+  let minWeight = Number(minWeight.value);
+  let maxWeight = Number(maxWeight.value);
+  if (minWeight > maxWeight || !Number.isFinite(minWeight) || !Number.isFinite(maxWeight) || !Number.isInteger(maxWeight.value) || !Number.isInteger(minWeight.value)){
+    alert('Введите корректные значения');
+  } else {
+    let fruitFilter = fruits.filter((item) => {
+      ((item.weight >= parseInt(minWeight.value)) && (item.weight <= parseInt(maxWeight.value)));
+  });
+  fruits = fruitFilter;
+}};*/
+
+/*** ФИЛЬТРАЦИЯ ***/
+
+// фильтрация массива
 const filterFruits = () => {
     // TODO: допишите функцию
   if (isNaN(maxWeight.value) || isNaN(minWeight.value) || maxWeight.value == '' || minWeight.value == '') {
-    alert('Введите целое число или воспользуйтесь значениями по умолчанию')
+    alert('Введите корректные значения веса');
     minWeight.value = "";
     maxWeight.value = "";
-  }
+    return fruits;
+  };
   let result = fruits.filter((item) => {
     if (parseInt(maxWeight.value) < parseInt(minWeight.value)) {
       [maxWeight.value, minWeight.value] = [minWeight.value, maxWeight.value]; // Значения меняются местами если max меньше min.
     }
-      item >= parseInt(minWeight.value) && item <= parseInt(maxWeight.value);
+      return ((item.weight >= parseInt(minWeight.value)) && (item.weight <= parseInt(maxWeight.value)));
   });
-  return result;
+  fruits = result;
 };
 
 filterButton.addEventListener('click', () => {
