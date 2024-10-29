@@ -237,7 +237,7 @@ const sortAPI = {
   // Условие остановки, выхода из рекурсии, возвращем массив с 1 элементом
   if (arr.length < 2) return arr;
   // Выбираем опорный элемент
-  let pivot = arr[0];
+  let pivot = arr[parseInt(arr.length-1)/2];
   // Определяем массивы для тех, что меньше и больше опорного
   const left = [];
   const right = [];
@@ -252,7 +252,7 @@ const sortAPI = {
   }
   // Рекурсивно повторяем процесс для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
   //return quickSort(left).concat(pivot, quickSort(right)); 
-  return [...quickSort(left), pivot, ...quickSort(right)]; 
+  return [...sortAPI.quickSort(left), pivot, ...sortAPI.quickSort(right)]; 
   },
 
 
