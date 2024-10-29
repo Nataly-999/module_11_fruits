@@ -232,7 +232,8 @@ const sortAPI = {
 
 
 // алгоритм быстрой сортировки
- quickSort (arr) {
+ //quickSort (arr) {
+  quickSort (arr) {
   // Условие остановки, выхода из рекурсии, возвращем массив с 1 элементом
   if (arr.length < 2) return arr;
   // Выбираем опорный элемент
@@ -250,8 +251,9 @@ const sortAPI = {
     }
   }
   // Рекурсивно повторяем процесс для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
-  return quickSort(left).concat(pivot, quickSort(right));
-},
+  //return quickSort(left).concat(pivot, quickSort(right)); 
+  return [...quickSort(left), pivot, ...quickSort(right)]; 
+  },
 
 
   // выполняет сортировку и производит замер времени
