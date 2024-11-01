@@ -35,6 +35,7 @@ const display = () => {
   fruitsList.innerHTML = '';
 
   for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits);
     // TODO: формируем новый элемент <li> при помощи document.createElement,
     // и добавляем в конец списка fruitsList при помощи document.appendChild
       const newLi = document.createElement("li");
@@ -233,39 +234,40 @@ const sortAPI = {
 
 // алгоритм быстрой сортировки
  //quickSort (arr) {
-  quickSort (fruits, comparationColor) {
-    console.log(fruits);
+  quickSort (arr, comparationColor) {
+    console.log(arr);
   // Условие остановки, выхода из рекурсии, возвращем массив с 1 элементом
-  if (fruits.length < 2) {return fruits;}
+  if (arr.length < 2) {return arr;}
   // Выбираем опорный элемент
-  let pivot = fruits[0];
+  let pivot = arr[0];
   // Определяем массивы для тех, что меньше и больше опорного
   let left = [];
   let right = [];
   let result = [];
 
   // Проходим циклом по всем элементам из массива и разносим их в массивы созданные ранее согласно условию, больше опорного - в правый, меньше - в левый  
-  for (let i = 1; i < fruits.length; i++) {
-    if (comparationColor(pivot, fruits[i])) {
-      left.push(fruits[i]);
-      console.log(pivot);
-      console.log(fruits);
-      console.log(left);
+  for (let i = 1; i < arr.length; i++) {
+    if (comparationColor(pivot, arr[i])) {
+      left.push(arr[i]);
+      //console.log(pivot);
+      //console.log(arr);
+      //console.log(left);
     } else {
-      right.push(fruits[i]);
-      console.log(pivot);
-      console.log(fruits);
-      console.log(right);
+      right.push(arr[i]);
+      //console.log(pivot);
+      //console.log(arr);
+      //console.log(right);
     } 
   }
   // Рекурсивно повторяем процесс для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
   //return quickSort(left).concat(pivot, quickSort(right)); 
-  fruits = [...sortAPI.quickSort(left, comparationColor), pivot, ...sortAPI.quickSort(right, comparationColor)];
+  arr = [...sortAPI.quickSort(left, comparationColor), pivot, ...sortAPI.quickSort(right, comparationColor)];
   //display(); 
-  console.log(fruits);
-  //fruits = fruits.splice(0, [...result]);
+  console.log(arr);
+  //fruits = fruits.splice(0, arr);
   //console.log(fruits);
-  return fruits;
+  //return fruits;
+  return arr;
   //return [...quickSort(left), pivot, ...quickSort(right)]; 
   },
 
