@@ -233,27 +233,40 @@ const sortAPI = {
 
 // алгоритм быстрой сортировки
  //quickSort (arr) {
-  quickSort (arr, comparationColor) {
+  quickSort (fruits, comparationColor) {
+    console.log(fruits);
   // Условие остановки, выхода из рекурсии, возвращем массив с 1 элементом
-  if (arr.length < 2) {return arr;}
+  if (fruits.length < 2) {return fruits;}
   // Выбираем опорный элемент
-  let pivot = arr[0];
+  let pivot = fruits[0];
   // Определяем массивы для тех, что меньше и больше опорного
   let left = [];
   let right = [];
+  let result = [];
 
   // Проходим циклом по всем элементам из массива и разносим их в массивы созданные ранее согласно условию, больше опорного - в правый, меньше - в левый  
-  for (let i = 1; i < arr.length; i++) {
-    if (comparationColor(pivot, arr[i])) {
-      left.push(arr[i]);
+  for (let i = 1; i < fruits.length; i++) {
+    if (comparationColor(pivot, fruits[i])) {
+      left.push(fruits[i]);
+      console.log(pivot);
+      console.log(fruits);
+      console.log(left);
     } else {
-      right.push(arr[i]);
-    }
+      right.push(fruits[i]);
+      console.log(pivot);
+      console.log(fruits);
+      console.log(right);
+    } 
   }
   // Рекурсивно повторяем процесс для новых двух массивов, текущий опорный элемент - кладем как первый в правый массив.
   //return quickSort(left).concat(pivot, quickSort(right)); 
-  return [...sortAPI.quickSort(left, comparationColor), pivot, ...sortAPI.quickSort(right, comparationColor)];
-  //return [...quickSort(left), pivot, ...quickSort(right)];  
+  fruits = [...sortAPI.quickSort(left, comparationColor), pivot, ...sortAPI.quickSort(right, comparationColor)];
+  //display(); 
+  console.log(fruits);
+  //fruits = fruits.splice(0, [...result]);
+  //console.log(fruits);
+  return fruits;
+  //return [...quickSort(left), pivot, ...quickSort(right)]; 
   },
 
 
